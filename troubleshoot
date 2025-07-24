@@ -62,3 +62,14 @@ It’s good practice to inform users and test before closing the old port.
 We temporarily enable it with:
 echo 1 > /proc/sys/net/ipv4/ip_forward 
 For a permanent setup, we edit /etc/sysctl.conf and set net.ipv4.ip_forward = 1, then run sysctl -p.
+
+---------------------------------------------------------------------------------------------------------
+
+when Internet access is not working , check /etc/resolve.conf > nameserver , 
+Also check ifconfig > for eth0 end point . 
+check /etc/network/interface > file and make sure eth0 are same 
+
+> If repo is not able to update or package not found 
+check /etc/apt/source.list > and need to add package according to the OS LIKE for Ubuntu add ".deb" package repo 
+
+
