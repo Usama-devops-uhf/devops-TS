@@ -142,6 +142,18 @@ Answer:
 - Ensure the cron service is running: systemctl status cron. 
 - Validate syntax and user permissions in /etc/crontab or user crontabs (crontab -e).
 
+-----------------------------------------------------Hyenoon Server --------------------------------------------------------------------------------
+
+#SVN BACKUPS
+0 2 * * * rsync -avz -e "ssh -p 9011" usman@168.235.66.135:/var/svn /home/hyenoon/backup/svn/ >> /home/hyenoon/backup/svn/rsync.log 2>&0
+
+
+
+#GITEA BACKUPS SCRIPT
+0 2 * * * /home/git/gitea_backups/backup_gitea_weekly.sh >> /home/git/gitea_backups/gitea-weekly-backup.log 2>&1
+
+
+
 
 
 
