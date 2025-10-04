@@ -152,6 +152,16 @@ Answer:
 #GITEA BACKUPS SCRIPT
 0 2 * * * /home/git/gitea_backups/backup_gitea_weekly.sh >> /home/git/gitea_backups/gitea-weekly-backup.log 2>&1
 
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Quick Linux Trick:
+Server load so high you can’t even SSH in?
+
+👉 Use this command;
+
+ssh -o ConnectTimeout=1 -o ConnectionAttempts=1 user@host "nice -n -20 bash"
+
+
 
 
 
