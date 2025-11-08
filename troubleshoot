@@ -161,6 +161,86 @@ Server load so high you can’t even SSH in?
 
 ssh -o ConnectTimeout=1 -o ConnectionAttempts=1 user@host "nice -n -20 bash"
 
+-----------------------------------------------laravel Project---------------------------------------------------------------------------
+
+To prevent this issue in the future (recommended for all Laravel deployments)
+
+cd /var/www/kdms_aftersales_backend
+
+# Ensure directories and permissions are correct
+mkdir -p storage/framework/{cache/data,sessions,views} bootstrap/cache
+chown -R www-data:www-data storage bootstrap/cache
+chmod -R 775 storage bootstrap/cache
+
+# Clear and rebuild caches
+php artisan optimize:clear
+php artisan optimize
+
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+
+-------------------------------------------DevOps daily TS----------------------------------------------------------------------------
+
+𝘿𝙖𝙞𝙡𝙮 𝙇𝙞𝙛𝙚-𝙎𝙖𝙫𝙚𝙧𝙨:
+ • ps aux | grep {process} → Find that sneaky process
+ • lsof -i :{port} → Who’s stealing your port
+ • df -h → Classic “we’re out of space” alert
+ • netstat -tulpn → Network connection detective
+ • kubectl get pods | grep -i error → Quick K8s issue finder
+
+𝙇𝙤𝙜 𝙃𝙪𝙣𝙩𝙚𝙧𝙨:
+ • tail -f /var/log/* → Real-time log watcher
+ • journalctl -fu service-name → SystemD follower
+ • grep -r "error" . → The error hunter
+ • zcat access.log.gz | grep "500" → Find hidden 500s in compressed logs
+ • less +F → The improved tail
+
+𝘾𝙤𝙣𝙩𝙖𝙞𝙣𝙚𝙧 𝙒𝙝𝙞𝙨𝙥𝙚𝙧𝙚𝙧𝙨:
+ • docker ps --format '{{.Names}} {{.Status}}' → Clean container overview
+ • docker stats --no-stream → Resource snapshot
+ • crictl logs {container} → Raw container stories
+ • docker exec -it → Jump inside like a ninja
+ • podman top → Process peek inside containers
+
+𝙎𝙮𝙨𝙩𝙚𝙢 𝘿𝙚𝙩𝙚𝙘𝙩𝙞𝙫𝙚𝙨:
+ • htop → The visual performance monitor
+ • iostat -xz 1 → Disk I/O inspector
+ • free -h → Memory usage at a glance
+ • vmstat 1 → CPU & memory vitals
+ • dmesg -T | tail → Kernel’s fresh gossip
+ • uptime → Quick load average check
+
+𝙉𝙚𝙩𝙬𝙤𝙧𝙠 𝙉𝙞𝙣𝙟𝙖𝙨:
+ • curl -v → HTTP talk decoder
+ • dig +short → DNS lookup made easy
+ • ss -tunlp → Modern replacement for netstat
+ • iptables -L → Firewall insights
+ • traceroute → Where’s my packet going?
+ • nmap -sS {IP} → (Bonus) Silent port scanner for quick checks
+
+𝙁𝙞𝙡𝙚 𝙅𝙪𝙜𝙜𝙡𝙚𝙧𝙨:
+ • find . -name "*.yaml" -type f → YAML hunter
+ • rsync -avz → The smart copier
+ • tar -xvf → The “I always Google this” one 😅
+ • ln -s → Symlink creator
+ • chmod +x → Make it executable
+ • du -sh * | sort -h → Find what’s eating your disk space
+
+𝙋𝙚𝙧𝙛𝙤𝙧𝙢𝙖𝙣𝙘𝙚 𝙋𝙧𝙤𝙛𝙞𝙡𝙚𝙧𝙨:
+ • strace -p {pid} → System call spy
+ • tcpdump -i any → Packet sniffer
+ • sar -n DEV 1 → Network stats monitor
+ • pidstat -u 1 → Per-process CPU usage
+ • top -c → The classic
+
+𝙂𝙞𝙩 𝙀𝙨𝙨𝙚𝙣𝙩𝙞𝙖𝙡𝙨:
+ • git log --oneline → Short history
+ • git stash → Temporary hideout
+ • git reset --hard HEAD^ → Undo disaster
+ • git diff --cached → What’s staged?
+ • git blame → The “who did this?” finder
+
 
 
 
