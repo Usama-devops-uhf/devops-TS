@@ -241,6 +241,81 @@ php artisan view:clear
  • git diff --cached → What’s staged?
  • git blame → The “who did this?” finder
 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+ Linux Load Average Spikes — But CPU Looks Normal? Here’s What’s Really Happening.
+
+Ever seen your Linux servers showing high load average even though CPU usage stays low?
+This is a classic scenario many SysAdmins and IT Managers run into — and the root cause is often not CPU at all.
+
+---
+
+🧠 What’s Going On?
+
+When the load average climbs but CPU stays healthy, the system is usually stuck waiting on something else:
+
+✅ I/O Wait — The biggest cause.
+Slow or overloaded storage means processes are waiting for disk I/O to complete.
+
+---
+
+🔍 How to Diagnose It
+
+📌 1. Check disk wait queues
+Use tools like:
+
+iostat -x
+
+vmstat 1
+
+dstat -d
+
+Look for:
+
+High await
+
+High svctm
+
+High %iowait
+
+📌 2. Review NFS or remote storage
+
+Stale NFS handles
+
+Slow NAS/SAN response
+
+Network mount timeouts
+
+📌 3. Inspect kernel and hardware logs
+Run:
+dmesg | grep -i error
+Look for:
+
+Disk timeouts
+
+Failed sectors
+
+Filesystem warnings
+
+---
+
+🛠️ Why This Happens
+
+Load average counts more than just CPU usage.
+It also includes:
+
+Processes waiting for I/O
+
+Tasks stuck in uninterruptible sleep (D state)
+
+So even with low CPU, a slow disk = high load average.
+
+---
+
+🎯 Key Takeaway
+
+If your Linux load is spiking without CPU usage increasing, start with storage, not compute.
+Most real bottlenecks will be found in the disk layer or NFS paths—not the CPU.
 
 
 
