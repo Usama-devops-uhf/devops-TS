@@ -317,6 +317,90 @@ So even with low CPU, a slow disk = high load average.
 If your Linux load is spiking without CPU usage increasing, start with storage, not compute.
 Most real bottlenecks will be found in the disk layer or NFS paths—not the CPU.
 
+------------------------------------Linux TS------------------------------------------
+
+ Linux Interview Essentials
+-------------------------------
+1️⃣ Linux Boot Workflow
+ ✔ BIOS/UEFI → Initializes hardware and verifies boot device.
+ ✔ Bootloader (GRUB) → Loads the Linux kernel.
+ ✔ Kernel Initialization → Loads drivers and mounts root filesystem.
+ ✔ init/systemd takes over and manages services.
+ ✔ System reaches defined runlevel/systemd target and becomes ready for use.
+2️⃣ Troubleshooting a Slow Linux System
+Always check in this order:
+ ✔ CPU usage: top, htop
+ ✔ Memory pressure: free -h, vmstat
+ ✔ I/O bottleneck: iostat, sar
+ ✔ Disk space: df -h, du -sh *
+ ✔ Network load: iftop, ss, netstat
+
+3️⃣ Identifying Heavy Resource Processes
+ ✔ CPU: ps aux --sort=-%cpu
+ ✔ Memory: ps aux --sort=-%mem
+ ✔ Interactive view: top, htop
+
+4️⃣ Diagnosing High I/O Wait:
+ ✔ Tools: iostat -x, pidstat -d, iotop, lsof
+Check for: slow disks, overloaded applications, or excessive read/write operations.
+
+5️⃣ Load Average vs CPU Usage:
+ ✔  Load Average → How many processes are running or waiting.
+ ✔  CPU Utilization → How busy the CPU actually is.
+
+6️⃣ Checking Active Ports & Services
+ ✔  ss -tulpn
+ ✔  netstat -tulpn
+ ✔  lsof -i :<port>
+
+7️⃣ Debugging Crashes / Kernel Issues
+ Logs to check:
+ ✔ /var/log/messages, 
+ ✔ /var/log/kern.log, 
+ ✔ journalctl -xe, 
+ ✔ /var/crash
+
+8️⃣ systemd Targets / Runlevels
+ ✔ multi-user.target → CLI mode
+ ✔ graphical.target → GUI mode
+ ✔ rescue.target → Maintenance mode
+
+9️⃣ Managing System Services
+ ✔ systemctl start <service>
+ ✔ systemctl stop <service>
+ ✔ systemctl status <service>
+ ✔ systemctl enable <service>
+ ✔ systemctl disable <service>
+
+🔟 Disk Monitoring & Inode Check
+ ✔ Disk space: df -h, du -sh *
+ ✔ Inodes: df -i
+
+1️⃣1️⃣ Boot Failure – Common Causes
+
+ ✔ ⚠ GRUB corruption
+ ✔ ⚠ Filesystem damage
+ ✔ ⚠ Missing UUID
+ ✔ ⚠ Kernel panic
+
+1️⃣2️⃣ Increasing LVM Storage
+ ✔ Commands in sequence:
+ ✔ pvcreate → vgextend → lvextend → resize2fs/xfs_growfs
+
+1️⃣3️⃣ Cron Job Setup & Validation
+ ✔ Create/Edit: crontab -e
+ ✔ Verify logs: /var/log/cron or journalctl -u crond
+
+1️⃣4️⃣ Find Deleted File Still in Use
+ ✔ lsof | grep deleted
+
+1️⃣5️⃣ Monitoring Swap
+ ✔ free -h
+ ✔ swapon -s
+ ✔ vmstat
+ ✔ top
+
+
 
 
 
