@@ -400,6 +400,14 @@ Check for: slow disks, overloaded applications, or excessive read/write operatio
  ✔ vmstat
  ✔ top
 
+------------------------Redhat 9.7 Firewalld --------------------------------------------------------------------------------------------
+
+sudo firewall-cmd --list-all
+sudo firewall-cmd --permanent --add-port=3306/tcp
+sudo firewall-cmd --reload
+
+
+
 
 
 
