@@ -406,6 +406,16 @@ sudo firewall-cmd --list-all
 sudo firewall-cmd --permanent --add-port=3306/tcp
 sudo firewall-cmd --reload
 
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Started checking things manually:
+
+→ "htop" to see what was actually happening with processes
+→ "iostat -xz 1" to check I/O wait and disk latency
+→ "iotop" to catch which process was eating disk I/O
+→ "lsof" to inspect resource/file usage
+→ "journalctl -xe" for system logs
+
 
 
 
